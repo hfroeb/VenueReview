@@ -1,10 +1,5 @@
 package com.theironyard.entities;
-
 import javax.persistence.*;
-
-/**
- * Created by halleyfroeb on 11/1/16.
- */
 
 @Entity
 @Table(name = "events")
