@@ -1,8 +1,11 @@
 package com.theironyard.controllers;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by jakefroeb on 11/2/16.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Venue
 {
     private String comment_count;
@@ -305,9 +308,22 @@ public class Venue
         this.event_count = event_count;
     }
 
+
     @Override
     public String toString()
     {
         return "ClassPojo [comment_count = "+comment_count+", trackback_count = "+trackback_count+", city_name = "+city_name+", region_abbr = "+region_abbr+", venue_name = "+venue_name+", image = "+image+", country_abbr2 = "+country_abbr2+", country_name = "+country_name+", url = "+url+", venue_type = "+venue_type+", id = "+id+", region_name = "+region_name+", country_abbr = "+country_abbr+", timezone = "+timezone+", created = "+created+", address = "+address+", description = "+description+", link_count = "+link_count+", name = "+name+", postal_code = "+postal_code+", owner = "+owner+", geocode_type = "+geocode_type+", longitude = "+longitude+", latitude = "+latitude+", event_count = "+event_count+"]";
+    }
+
+    public Venue(String venue_name, String address, String city_name, String region_abbr, String postal_code, String url ){
+        this.venue_name = venue_name;
+        this.address = address;
+        this.city_name = city_name;
+        this.region_abbr = region_abbr;
+        this.postal_code = postal_code;
+        this.url = url;
+    }
+
+    public Venue() {
     }
 }

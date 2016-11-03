@@ -20,7 +20,21 @@ this is rerun
     <input type="text" placeholder="Search by com.theironyard.controllers.Venue" name="userInput"/>
     <button type="submit">Search</button>
 </form>
-{{jsonResults}}
+{{^jsonResults}}
+{{/jsonResults}}
+<ul>
+    {{#jsonResults}}
+    <li>
+        <h1>{{venue_name}}</h1><br>
+        {{address}}<br>
+        {{city_name}}, {{region_abbr}}, {{postal_code}}<br>
+        {{url}}<br>
+    </li>
+    {{/jsonResults}}
+
+
+</ul>
+
 <br>
 </body>
 </html>

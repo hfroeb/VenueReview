@@ -40,8 +40,32 @@ public class VenueReviewController {
             JsonVenue searchResults = mapper.readValue(jsonResults,JsonVenue.class);
             Venue[] venue = searchResults.getVenues().getVenue();
             Venue venue1 = venue[0];
-            String venues = venue1.toString();
-            model.addAttribute("jsonResults", venues);
+            String venue_name = venue1.getVenue_name();
+            if (venue_name == null){
+                venue_name = "venue name not found";
+            }
+            String address = venue1.getAddress();
+            if (address == null){
+                address = "address not found";
+            }
+            String city_name = venue1.getCity_name();
+            if (city_name == null){
+                city_name = "city not found";
+            }
+            String region_abbr = venue1.getRegion_abbr();
+            if (region_abbr == null){
+                region_abbr = "state abbr. not found";
+            }
+            String postal_code = venue1.getPostal_code();
+            if (postal_code == null){
+                postal_code = "zip code not found";
+            }
+            String url = venue1.getUrl();
+            if (url == null){
+                url = "url not found";
+            }
+            Venue showVenue = new Venue(venue_name, address, city_name, region_abbr, postal_code, url);
+            model.addAttribute("jsonResults", showVenue);
         }
         return "home";
     }
@@ -52,8 +76,6 @@ public class VenueReviewController {
         String jsonResults = "";
         if (userInput.contains(" ")) {
         }
-//        String encoded = URLEncoder.encode(userInput, "UTF-8");
-
 
         String urlString = String.format("http://api.eventful.com/json/venues/search?keywords=" + userInput + "&app_key=chMBShbTQXXRkhwb");
         URL url = new URL(urlString);
