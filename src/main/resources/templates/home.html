@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+this is rerun
 {{^username}}
 <form action="/login"method="post">
     <input type="text" placeholder="Username" name="username"/>
@@ -16,9 +17,10 @@
 </form>
 {{/username}}
 <form action="/search" method="post">
-    <input type="text" placeholder="Search by Venue" name="userInput"/>
+    <input type="text" placeholder="Search by com.theironyard.controllers.Venue" name="userInput"/>
     <button type="submit">Search</button>
 </form>
+{{jsonResults}}
 <br>
 </body>
 </html>
