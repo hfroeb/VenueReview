@@ -3,6 +3,10 @@ package com.theironyard.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theironyard.JsonObjects.JsonVenue;
 import com.theironyard.JsonObjects.JsonVenue1;
+import com.theironyard.entities.User;
+import com.theironyard.services.UserRepository;
+import com.theironyard.utilities.PasswordStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +31,9 @@ import java.util.Scanner;
  */
 @Controller
 public class VenueReviewController {
+    String warning;
+    @Autowired
+    UserRepository users;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
         public String get(HttpSession session, Model model)throws Exception{
@@ -34,7 +41,6 @@ public class VenueReviewController {
         String jsonResults = (String) session.getAttribute("jsonResults");
         if( jsonResults == null || jsonResults.equals("")){
             model.addAttribute("venueList", "");
-
         }else {
 
             ObjectMapper mapper = new ObjectMapper();
@@ -71,7 +77,9 @@ public class VenueReviewController {
                 JsonVenue1 showVenue = new JsonVenue1(id, venue_name, address, city_name, region_abbr, postal_code, url);
                 showVenueList.add(showVenue);
             }
+            User user = (User) session.getAttribute("user");
             session.setAttribute("venueList", showVenueList);
+            model.addAttribute("user", user);
             model.addAttribute("venueList", showVenueList);
         }
         return "home";
@@ -114,13 +122,50 @@ public class VenueReviewController {
             }
         }
         model.addAttribute("venue", currentVenue);
+        return "/venue-page";
 
 
     }
     @RequestMapping(path = "venue-page", method = RequestMethod.POST)
     public String venuePage(HttpSession session, String id, Model model){
         session.setAttribute("id", id);
-        return "redirect:/venue-page"  ;
+        return "redirect:/venue-page";
+    }
+    @RequestMapping(path = "/registration", method = RequestMethod.GET)
+    public String registration(){
+        return "/registration";
+    }
+    @RequestMapping(path = "/sign-up", method = RequestMethod.POST)
+    public String signUp(){
+        return "redirect:/registration";
+    }
+    @RequestMapping(path = "/create-user", method = RequestMethod.POST)
+    public String createUser(String name,String password,String email){
+        User user = users.findFirstByEmail(email);
+        if(user != null){
+            warning = "email already has an account";
+        }else{
+            user = new User(name,password,email);
+            users.save(user);
+        }
+        return "redirect:/";
+    }
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public String login(HttpSession session, String email, String password)throws Exception{
+        User user = users.findFirstByEmail(email);
+        if(user == null){
+            warning = "no user with that email";
+        }else if (!PasswordStorage.verifyPassword(password, user.getPassword())){
+            warning = "incorrect password";
+        }else {
+            session.setAttribute("user", user);
+        }
+        return "";
+    }
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 

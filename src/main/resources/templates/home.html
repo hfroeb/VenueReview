@@ -2,24 +2,28 @@
 <html lang="en">
 <body>
 this is rerun
-{{^username}}
+{{^user}}
 <form action="/login"method="post">
-    <input type="text" placeholder="Username" name="username"/>
     <input type="text" placeholder="Email Address" name="email"/>
     <input type="password" placeholder="Password" name="password"/>
     <button type="submit">Login</button>
 </form>
-{{/username}}
+<form action="/sign-up" method="post">
+    <button type="submit">Create Profile</button>
+</form>
+{{/user}}
 <br>
-{{#username}}
+{{#user}}
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
-{{/username}}
+Welcome {{username}}
+{{/user}}
 <form action="/search" method="post">
     <input type="text" placeholder="Search by com.theironyard.JsonObjects.JsonVenue1" name="userInput"/>
     <button type="submit">Search</button>
 </form>
+{{^venueList}}
 
 <ul>
     {{#venueList}}
@@ -38,8 +42,7 @@ this is rerun
 
     </li>
     {{/venueList}}
-
-
+    {{/venueList}}
 </ul>
 
 <br>
