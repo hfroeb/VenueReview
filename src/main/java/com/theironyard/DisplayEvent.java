@@ -2,17 +2,7 @@ package com.theironyard;
 
 /**
  * Created by jakefroeb on 11/8/16.
- * {{name}}</h1>
-
- {{type}}
- <br>
- {{description}}
- <br>
- {{start.localDate}}
- <br>
- Starting time: {{start.localTime}}, Ending Time: {{end.localTime}}
- <br>
- <a href="{{url}}">{{url}}</a> <br>
+ *
  */
 public class DisplayEvent {
     public String name;
