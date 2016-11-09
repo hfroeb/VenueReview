@@ -23,13 +23,13 @@ public class Review {
     User user;
 
     @Column(nullable = false)
-    int apiKey;
+    String venueId;
 
-    public Review(String text, int rating, User user, int apiKey) {
+    public Review(String text, int rating, User user, String venueId) {
         this.text = text;
         this.rating = rating;
         this.user = user;
-        this.apiKey = apiKey;
+        this.venueId = venueId;
     }
 
     public Review() {
@@ -67,11 +67,11 @@ public class Review {
         this.user = user;
     }
 
-    public int getApiKey() {
-        return apiKey;
+    public String getVenueId() {
+        return venueId;
     }
 
-    public void setApiKey(int apiKey) {
-        this.apiKey = apiKey;
+    public void setVenueId(String venueId) {
+        this.venueId = venueId;
     }
 }
