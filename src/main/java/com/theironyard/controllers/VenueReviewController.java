@@ -132,7 +132,6 @@ public class VenueReviewController {
             }
         }
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
-        System.out.println(urlString);
         URL url = new URL(urlString);
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -174,13 +173,14 @@ public class VenueReviewController {
                 if (eventUrl == null) {
                     eventUrl = "url not found";
                 }
-//                String name, String type, String description, String startDate, String time, String endDate, String url
                 DisplayEvent displayEvent = new DisplayEvent(name,type,startDate,time,urlString);
                 eventDisplayList.add(displayEvent);
                 System.out.println(event.getName());
             }
         }
+        User user = users.findFirstByEmail((String)session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
+        model.addAttribute("user",user);
         model.addAttribute("reviews", displayReviews);
         model.addAttribute("events", eventDisplayList);
         model.addAttribute("venue", currentVenue);
@@ -230,18 +230,17 @@ public class VenueReviewController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(HttpSession session, String email, String password)throws Exception{
-        System.out.println("logging in");
+    public String login(HttpSession session, String email, String password,String route)throws Exception{
         User user = users.findFirstByEmail(email);
         if(user == null){
             System.out.println( "no user with that email");
         }else if (!PasswordStorage.verifyPassword(password, user.getPassword())){
             System.out.println("incorrect password");
         }else {
-            System.out.println("user added");
             session.setAttribute("email", email);
         }
-        return "redirect:/";
+
+        return "redirect:"+route;
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)

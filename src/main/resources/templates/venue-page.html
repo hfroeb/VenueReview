@@ -56,12 +56,14 @@
         <form action="/login"method="post">
             <input type="text" placeholder="Email Address" name="email"/>
             <input type="password" placeholder="Password" name="password"/>
+            <input type="hidden" value="/venue-page" name="route"/>
             <button type="submit">Login</button>
         </form>
         <form action="/sign-up" method="post">
             <button type="submit">Create Profile</button>
         </form>
         {{/user}}
+
         {{#user}}
         <form action="create-review" method="post">
             <select name="rating">
@@ -76,6 +78,7 @@
             <button type="submit">Submit</button>
         </form>
         {{/user}}
+        <h2>Reviews:</h2>
         <ul>
             {{#reviews}}
             <li>
