@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #container {
+            width:960px;
+            margin:20px auto;
+        }
+
+        #events {
+            float:left;
+            width:620px;
+        }
+
+        #reviews {
+            float:left;
+            width:340px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        {{#venue}}
+        <h1>{{venue_name}}</h1>
+        <br>
+        {{address}}<br>
+        {{city_name}}, {{region_abbr}}, {{postal_code}}<br>
+        {{id}}<br>
+        <a href="{{url}}">{{url}}</a> <br>
+        {{/venue}}
+    </div>
+
+    <div id="events">
+        <ul>
+            {{#events}}
+            <li>
+                <h1>{{name}}</h1>
+                <br>
+                {{type}}
+                <br>
+                {{startDate}}
+                <br>
+                Starting time: {{time}}
+                <br>
+                <a href="{{url}}">{{url}}</a> <br>
+            </li>
+            {{/events}}
+        </ul>
+    </div>
+
+<<<<<<< HEAD
+    <div id="reviews">
+        <ul>
+            {{#reviews}}
+            <li>
+                {{name}}
+                {{rating}} <br>
+                {{text}} <br>
+            </li>
+            {{/reviews}}
+        </ul>
+    </div>
+</div>
+=======
+<a href="{{url}}">{{url}}</a> <br>
+{{/venue}}
+<ul>
+{{#events}}
+<li>
+    <h1>{{name}}</h1>
+    <br>
+    {{type}}
+    <br>
+    {{startDate}}
+    <br>
+    Starting time: {{time}}
+    <br>
+    <a href="{{url}}">{{url}}</a> <br>
+    </li>
+    {{/events}}
+</ul>
+>>>>>>> 94da845973ee19fa71e52499e29bc986a72d008d
+</body>
+</html>
