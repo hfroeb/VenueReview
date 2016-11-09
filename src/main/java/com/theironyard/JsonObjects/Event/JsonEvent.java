@@ -262,6 +262,9 @@ public class JsonEvent {
    private Events _embedded;
 
     public Events get_embedded() {
+        if(_embedded== null)
+            return new Events();
+        else
         return _embedded;
     }
 
