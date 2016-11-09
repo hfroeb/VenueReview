@@ -27,10 +27,6 @@ import java.util.Scanner;
 /**
  * Created by halleyfroeb on 11/1/16.
  * User(String username, String password, String email)
- * Review(User author, int eventfulKey, String reviewText, int rating)
- *
- * http://api.eventful.com/json/events/search?...&location=San+Diego
-    http://api.eventful.com/rest/venues/search?...&keywords=Restaurant&location=San+Diego
  */
 @Controller
 public class VenueReviewController {
