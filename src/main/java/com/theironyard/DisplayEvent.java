@@ -17,10 +17,8 @@ package com.theironyard;
 public class DisplayEvent {
     public String name;
     public String type;
-    public String description;
     public String startDate;
     public String time;
-    public String endDate;
     public String url;
 
     public String getName() {
@@ -39,14 +37,6 @@ public class DisplayEvent {
         this.type = type;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getStartDate() {
         return startDate;
     }
@@ -63,14 +53,6 @@ public class DisplayEvent {
         this.time = time;
     }
 
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -83,14 +65,12 @@ public class DisplayEvent {
 
     }
 
-    public DisplayEvent(String name, String type, String description, String startDate, String time, String endDate, String url) {
+    public DisplayEvent(String name, String type, String startDate, String time, String url) {
 
         this.name = name;
         this.type = type;
-        this.description = description;
         this.startDate = startDate;
         this.time = time;
-        this.endDate = endDate;
         this.url = url;
     }
 }
