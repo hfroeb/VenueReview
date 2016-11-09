@@ -32,10 +32,11 @@
     </div>
 
     <div id="events">
+        <h2>Upcoming Events:</h2>
         <ul>
             {{#events}}
             <li>
-                <h1>{{name}}</h1>
+                <h3>{{name}}</h3>
                 <br>
                 {{type}}
                 <br>
@@ -50,6 +51,18 @@
     </div>
 
     <div id="reviews">
+        <h2>Create a Review</h2>
+        {{^user}} You must be logged in to write a review. <br>
+        <form action="/login"method="post">
+            <input type="text" placeholder="Email Address" name="email"/>
+            <input type="password" placeholder="Password" name="password"/>
+            <button type="submit">Login</button>
+        </form>
+        <form action="/sign-up" method="post">
+            <button type="submit">Create Profile</button>
+        </form>
+        {{/user}}
+        {{#user}}
         <form action="create-review" method="post">
             <select name="rating">
                 <option selected disabled>Rating</option>
@@ -62,33 +75,18 @@
             <input type="text" placeholder="review description" name="text"/>
             <button type="submit">Submit</button>
         </form>
+        {{/user}}
         <ul>
             {{#reviews}}
             <li>
-                {{name}}
-                {{rating}} <br>
-                {{text}} <br>
+                {{user.name}} <br>
+               Rating:  {{rating}} <br>
+               Review:  {{text}} <br>
             </li>
             {{/reviews}}
         </ul>
     </div>
 </div>
 
-<ul>
-{{#events}}
-<li>
-    <h1>{{name}}</h1>
-    <br>
-    {{type}}
-    <br>
-    {{startDate}}
-    <br>
-    Starting time: {{time}}
-    <br>
-    <a href="{{url}}">{{url}}</a> <br>
-    </li>
-    {{/events}}
-</ul>
->>>>>>> 94da845973ee19fa71e52499e29bc986a72d008d
 </body>
 </html>
