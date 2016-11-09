@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -97,8 +98,10 @@ public class VenueReviewController {
         String jsonResults = "";
         if (userInput.contains(" ")) {
         }
+        String encoded= URLEncoder.encode(userInput,"UTF-8");
 
-        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword=" + userInput + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
+        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword="
+                + encoded + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
         URL url = new URL(urlString);
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -180,6 +183,13 @@ public class VenueReviewController {
         }
         User user = users.findFirstByEmail((String)session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
+        int averageRating = 0;
+        for (Review review: displayReviews){
+            int rating = review.getRating();
+            averageRating += rating;
+        }
+        averageRating = averageRating/displayReviews.size();
+        model.addAttribute("averageRating", averageRating);
         model.addAttribute("user",user);
         model.addAttribute("reviews", displayReviews);
         model.addAttribute("events", eventDisplayList);

@@ -29,6 +29,8 @@
         {{id}}<br>
         <a href="{{url}}">{{url}}</a> <br>
         {{/venue}}
+        Average Rating = {{averageRating}}
+
     </div>
 
     <div id="events">
@@ -74,7 +76,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input type="text" placeholder="review description" name="text"/>
+            <textarea placeholder="review description" name="text"/>
             <button type="submit">Submit</button>
         </form>
         {{/user}}
