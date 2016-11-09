@@ -4,124 +4,254 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by jakefroeb on 11/8/16.
- * {
+ * {{
  "_embedded": {
- "events": [{
- "name": "Neon Dreams Cinema Club presents: MIAMI BLUES",
+ "events": [
+ {
+ "name": "The 1975",
  "type": "event",
- "id": "LvZ184Ikwnxy_phb1ZvA8",
+ "id": "G5viZf2KcB4ly",
  "test": false,
- "description": "Welcome to a world where people's worst impulses and darkest desires are stimulated by a landscape of synth-pop and bright neon lights. Nothing is quite as it seems as you surrender yourself to the dazzling sights and soothing sounds of the Neon Dreams Cinema Club, a monthly film series exclusive to The Royal Cinema bringing you the best in delightfully surreal neo-noir cinema from the 70's, 80's, and beyond.Pre-show starts at 7:00pmFeature starts at 8:00pmVISIT THE EVENT PAGE&gt;&gt;HERE&lt;&lt;This 35mm presentation is made possible thanks to our lovely sponsor Sonic Boom and will be preceded by a mind-shattering pre-show, featuring a themed video mixtape of music, film, and television to put you in the right mood. As always this will be a lisenced event, courtesy of Monarch Tavern, and there will be AMAZING PRIZES given out to many lucky patrons. Be sure to arrive early!======After Junior (Alec Baldwin) is released from prison, he plans on starting a new life in Miami. But when he kills a man in the airport, he flees the scene and finds Susie (Jennifer Jason Leigh), a mild-mannered prostitute searching for stability. The two opposites become romantically involved, and Junior steals a badge and gun from a veteran detective (Fred Ward). Using the officer's identity, Junior embarks on a crime spree and convinces Susie that he is the perfect man.\"George Armitage's Miami Blues is another film slightly ahead of its time. In 1990 its combination of tough, funny noir and flashes of shocking violence seemed to bemuse audiences. Only five years later would Tarantino turn what was once for cult appreciation only into a global smasheroo. This very entertaining Miami lowlife romp has at its heart two great badass performances, the grizzled Fred Ward as Hoke Mosely and the frequently shirtless and impressively hairy Alec Baldwin as the charming psychopath Junior. This film is a little gem of broken fingers, lost digits and missing teeth. Anyone who has seen my amateur film Dead Right will know that I stole a joke from Miami Blues.\"- Edgar Wright (director of Shaun Of The Dead, Scott Pilgrim Vs. The World)",
- "url": "https://www.universe.com/events/neon-dreams-cinema-club-presents-miami-blues-tickets-toronto-TFM67Q?ref=ticketmaster",
+ "url": "http://ticketmaster.com/event/1B0050F4EDE95AF9",
  "locale": "en-us",
- "images": [
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_EVENT_DETAIL_PAGE_16_9.jpg",
- "width": 205,
- "height": 115,
- "fallback": true
- },
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_RECOMENDATION_16_9.jpg",
- "width": 100,
- "height": 56,
- "fallback": true
- },
- {
- "ratio": "4_3",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_CUSTOM.jpg",
- "width": 305,
- "height": 225,
- "fallback": true
- },
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_RETINA_PORTRAIT_16_9.jpg",
- "width": 640,
- "height": 360,
- "fallback": true
- },
- {
- "ratio": "3_2",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_3_2.jpg",
- "width": 1024,
- "height": 683,
- "fallback": true
- },
- {
- "ratio": "3_2",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_ARTIST_PAGE_3_2.jpg",
- "width": 305,
- "height": 203,
- "fallback": true
- },
- {
- "ratio": "3_2",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_RETINA_PORTRAIT_3_2.jpg",
- "width": 640,
- "height": 427,
- "fallback": true
- },
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_LARGE_16_9.jpg",
- "width": 2048,
- "height": 1152,
- "fallback": true
- },
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_TABLET_LANDSCAPE_16_9.jpg",
- "width": 1024,
- "height": 576,
- "fallback": true
- },
- {
- "ratio": "16_9",
- "url": "http://s1.ticketm.net/dam/c/8cf/a6653880-7899-4f67-8067-1f95f4d158cf_124761_RETINA_LANDSCAPE_16_9.jpg",
- "width": 1136,
- "height": 639,
- "fallback": true
- }
- ],
- "sales": {
- "public": {
- "startDateTime": "2016-01-14T21:36:14Z",
- "startTBD": false,
- "endDateTime": "2016-01-15T02:00:00Z"
- }
- },
  "dates": {
- "access": {
- "startDateTime": "2016-01-14T21:36:14Z",
- "startApproximate": false,
- "endDateTime": "2016-01-15T02:00:00Z",
- "endApproximate": true
- },
  "start": {
- "localDate": "2016-01-14",
- "localTime": "19:00:00",
- "dateTime": "2016-01-15T00:00:00Z",
+ "localDate": "2016-11-21",
+ "localTime": "20:00:00",
+ "dateTime": "2016-11-22T02:00:00Z",
  "dateTBD": false,
  "dateTBA": false,
  "timeTBA": false,
  "noSpecificTime": false
  },
- "end": {
- "localTime": "21:00:00",
- "dateTime": "2016-01-15T02:00:00Z",
- "approximate": false
- },
- "timezone": "America/Toronto",
+ "timezone": "America/Chicago",
  "status": {
- "code": "offsale"
+ "code": "onsale"
  }
+ },
+ "classifications": [
+ {
+ "primary": true,
+ "segment": {
+ "id": "KZFzniwnSyZfZ7v7nJ",
+ "name": "Music"
+ },
+ "genre": {
+ "id": "KnvZfZ7vAeA",
+ "name": "Rock"
+ },
+ "subGenre": {
+ "id": "KZazBEonSMnZfZ7v6F1",
+ "name": "Pop"
+ }
+ }
+ ],
+ "promoter": {
+ "id": "653",
+ "name": "LIVE NATION MUSIC",
+ "description": "LIVE NATION MUSIC / NTL / USA"
+ },
+ "priceRanges": [
+ {
+ "type": "standard",
+ "currency": "USD",
+ "min": 27.5,
+ "max": 37.5
+ }
+ ],
+ "_links": {
+ "self": {
+ "href": "/discovery/v2/events/G5viZf2KcB4ly?locale=en-us"
+ },
+ "attractions": [
+ {
+ "href": "/discovery/v2/attractions/K8vZ9178147?locale=en-us"
+ }
+ ],
+ "venues": [
+ {
+ "href": "/discovery/v2/venues/KovZpZAF6eJA?locale=en-us"
+ }
+ ]
+ },
+ "_embedded": {
+ "venues": [
+ {
+ "name": "Nashville Municipal Auditorium",
+ "type": "venue",
+ "id": "KovZpZAF6eJA",
+ "test": false,
+ "url": "http://ticketmaster.com/venue/221340",
+ "locale": "en-us",
+ "postalCode": "37201",
+ "timezone": "America/Chicago",
+ "city": {
+ "name": "Nashville"
+ },
+ "state": {
+ "name": "Tennessee",
+ "stateCode": "TN"
+ },
+ "country": {
+ "name": "United States Of America",
+ "countryCode": "US"
+ },
+ "address": {
+ "line1": "417 4th Avenue North"
+ },
+ "location": {
+ "longitude": "-86.77411120",
+ "latitude": "36.15627160"
+ },
+ "markets": [
+ {
+ "id": "31"
+ }
+ ],
+ "dmas": [
+ {
+ "id": 236
+ },
+ {
+ "id": 247
+ },
+ {
+ "id": 312
+ },
+ {
+ "id": 343
+ }
+ ],
+ "social": {
+ "twitter": {
+ "handle": "@NMAuditorium"
+ }
+ },
+ "boxOfficeInfo": {
+ "phoneNumberDetail": "Municipal Auditorium information number is (615) 862-6395",
+ "openHoursDetail": "Varies per event, not until the eve of the show.",
+ "acceptedPaymentDetail": "Cash, Visa & MasterCard",
+ "willCallDetail": "Opens 1 hour prior to event."
+ },
+ "parkingDetail": "Parking For most NMA events, $3 parking is available at the Metro Courthouse Garage, 101 James Robertson Parkway after 5pm on Friday and all day on Saturday and Sunday. For more information on the garage, please call 615-244-2330 or visit parkitdowntown.com. Meters are free starting at 6pm Monday-Saturday and all day Sunday.",
+ "accessibleSeatingDetail": "This is an accessible venue",
+ "generalInfo": {
+ "generalRule": "No smoking anywhere in the building. No weapons, no cameras, no video. Pass out policy varies. Discounts vary per event.",
+ "childRule": "Children's policy may vary on some children's shows, refer to specific event for more info. For most events, children under 2 are free."
  },
  "_links": {
  "self": {
- "href": "/discovery/v2/events/LvZ184Ikwnxy_phb1ZvA8?locale=en-us"
+ "href": "/discovery/v2/venues/KovZpZAF6eJA?locale=en-us"
+ }
+ }
+ }
+ ],
+ "attractions": [
+ {
+ "name": "The 1975",
+ "type": "attraction",
+ "id": "K8vZ9178147",
+ "test": false,
+ "url": "http://ticketmaster.com/artist/1765575",
+ "locale": "en-us",
+ "images": [
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_RECOMENDATION_16_9.jpg",
+ "width": 100,
+ "height": 56,
+ "fallback": false
+ },
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_TABLET_LANDSCAPE_LARGE_16_9.jpg",
+ "width": 2048,
+ "height": 1152,
+ "fallback": false
+ },
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_TABLET_LANDSCAPE_16_9.jpg",
+ "width": 1024,
+ "height": 576,
+ "fallback": false
+ },
+ {
+ "ratio": "3_2",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_ARTIST_PAGE_3_2.jpg",
+ "width": 305,
+ "height": 203,
+ "fallback": false
+ },
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_EVENT_DETAIL_PAGE_16_9.jpg",
+ "width": 205,
+ "height": 115,
+ "fallback": false
+ },
+ {
+ "ratio": "4_3",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_CUSTOM.jpg",
+ "width": 305,
+ "height": 225,
+ "fallback": false
+ },
+ {
+ "ratio": "3_2",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_TABLET_LANDSCAPE_3_2.jpg",
+ "width": 1024,
+ "height": 683,
+ "fallback": false
+ },
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_RETINA_LANDSCAPE_16_9.jpg",
+ "width": 1136,
+ "height": 639,
+ "fallback": false
+ },
+ {
+ "ratio": "16_9",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_RETINA_PORTRAIT_16_9.jpg",
+ "width": 640,
+ "height": 360,
+ "fallback": false
+ },
+ {
+ "ratio": "3_2",
+ "url": "http://s1.ticketm.net/dam/a/667/9e5e6b13-f76b-47a1-b877-a14c328bd667_127691_RETINA_PORTRAIT_3_2.jpg",
+ "width": 640,
+ "height": 427,
+ "fallback": false
+ }
+ ],
+ "classifications": [
+ {
+ "primary": true,
+ "segment": {
+ "id": "KZFzniwnSyZfZ7v7nJ",
+ "name": "Music"
+ },
+ "genre": {
+ "id": "KnvZfZ7vAeA",
+ "name": "Rock"
+ },
+ "subGenre": {
+ "id": "KZazBEonSMnZfZ7v6F1",
+ "name": "Pop"
+ }
+ }
+ ],
+ "_links": {
+ "self": {
+ "href": "/discovery/v2/attractions/K8vZ9178147?locale=en-us"
+ }
+ }
+ }
+ ]
+ }
+ },
  }
  }
  },

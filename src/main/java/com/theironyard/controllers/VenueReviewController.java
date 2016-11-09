@@ -158,28 +158,20 @@ public class VenueReviewController {
                 if (type == null) {
                     type = "type not found";
                 }
-                String description = event.getDescription();
-                if (description == null) {
-                    description = "description not found";
-                }
-                String startDate = event.getStart().getLocalDate();
+                String startDate = event.getDates().getStart().getLocalDate();
                 if (startDate == null) {
                     startDate = "date not found";
                 }
-                String time = event.getStart().getLocalTime();
+                String time = event.getDates().getStart().getLocalTime();
                 if (time == null) {
                     time = "start time not found";
-                }
-                String endDate = event.getEnd().getLocalTime();
-                if(endDate == null ){
-                    endDate = "end time not found";
                 }
                 String eventUrl = event.getUrl();
                 if (eventUrl == null) {
                     eventUrl = "url not found";
                 }
 //                String name, String type, String description, String startDate, String time, String endDate, String url
-                DisplayEvent displayEvent = new DisplayEvent(name,type,description,startDate,time,endDate,urlString);
+                DisplayEvent displayEvent = new DisplayEvent(name,type,startDate,time,urlString);
                 eventDisplayList.add(displayEvent);
                 System.out.println(event.getName());
             }
