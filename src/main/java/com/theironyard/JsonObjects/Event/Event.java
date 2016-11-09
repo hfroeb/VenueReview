@@ -130,10 +130,9 @@ public class Event {
     private String name;
     private String type;
     private String id;
-    private String description;
     private String url;
-    private Start start;
-    private End end;
+    private Dates dates;
+
 
     public String getName() {
         return name;
@@ -159,14 +158,6 @@ public class Event {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -175,24 +166,14 @@ public class Event {
         this.url = url;
     }
 
-    public Start getStart() {
-        if (start == null)
-            return new Start();
-        else return start;
-    }
-
-    public void setStart(Start start) {
-        this.start = start;
-    }
-
-    public End getEnd() {
-        if (end == null)
-            return new End();
+    public Dates getDates() {
+        if(dates== null)
+            return new Dates();
         else
-        return end;
+        return dates;
     }
 
-    public void setEnd(End end) {
-        this.end = end;
+    public void setDates(Dates dates) {
+        this.dates = dates;
     }
 }
