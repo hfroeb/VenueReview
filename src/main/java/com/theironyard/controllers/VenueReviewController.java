@@ -7,7 +7,9 @@ import com.theironyard.JsonObjects.Event.Event;
 import com.theironyard.JsonObjects.Event.JsonEvent;
 import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
+import com.theironyard.entities.Review;
 import com.theironyard.entities.User;
+import com.theironyard.services.ReviewRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class VenueReviewController {
     public static String warning;
     @Autowired
     UserRepository users;
+    @Autowired
+    ReviewRepository reviews;
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
         public String get(HttpSession session, Model model)throws Exception{
@@ -176,12 +180,22 @@ public class VenueReviewController {
                 System.out.println(event.getName());
             }
         }
-        session.removeAttribute("id");
+        List<Review> displayReviews = reviews.findAllByVenueId(id);
+        model.addAttribute("reviews", displayReviews);
         model.addAttribute("events", eventDisplayList);
         model.addAttribute("venue", currentVenue);
         return "/venue-page";
     }
 
+    @RequestMapping(path = "/create-review", method = RequestMethod.POST)
+    public String createReview(HttpSession session, String rating, String text){
+        String email = (String) session.getAttribute("email");
+        User user = users.findFirstByEmail(email);
+        String id = (String) session.getAttribute("id");
+        Review review = new Review(text,Integer.parseInt(rating),user,id);
+        reviews.save(review);
+        return "redirect:/venue-page";
+    }
     @RequestMapping(path = "/venue-page", method = RequestMethod.POST)
     public String venuePage(HttpSession session, String id){
         System.out.println(id);
