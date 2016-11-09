@@ -2,6 +2,33 @@
 <html lang="en">
 
 <body>
+{{#venue}}
+<h1>{{venue_name}}</h1>
+<form action="/venue-page" method="post">
+    <input type="hidden" value="{{id}}"/>
+    <button type="submit">Reviews</button>
+</form>
+<br>
+{{address}}<br>
+{{city_name}}, {{region_abbr}}, {{postal_code}}<br>
+{{id}}<br>
 
+<a href="{{url}}">{{url}}</a> <br>
+{{/venue}}
+<ul>
+{{#events}}
+<li>
+    <h1>{{name}}</h1>
+    <br>
+    {{type}}
+    <br>
+    {{startDate}}
+    <br>
+    Starting time: {{time}}
+    <br>
+    <a href="{{url}}">{{url}}</a> <br>
+    </li>
+    {{/events}}
+</ul>
 </body>
 </html>
