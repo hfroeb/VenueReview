@@ -2,45 +2,44 @@
 <html lang="en">
 <body>
 this is rerun
-{{^username}}
+{{^user}}
 <form action="/login"method="post">
-    <input type="text" placeholder="Username" name="username"/>
     <input type="text" placeholder="Email Address" name="email"/>
     <input type="password" placeholder="Password" name="password"/>
     <button type="submit">Login</button>
 </form>
-{{/username}}
+<form action="/sign-up" method="post">
+    <button type="submit">Create Profile</button>
+</form>
+{{/user}}
 <br>
-{{#username}}
+{{#user}}
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
-{{/username}}
+Welcome {{name}}
+{{/user}}
 <form action="/search" method="post">
     <input type="text" placeholder="Search by com.theironyard.JsonObjects.JsonVenue1" name="userInput"/>
     <button type="submit">Search</button>
 </form>
-
 <ul>
     {{#venueList}}
     <li>
         <h1>{{venue_name}}</h1>
         <form action="/venue-page" method="post">
-            <input type="hidden" value="{{id}}"/>
-            <button type="submit">Reviews</button>
+            <input type="hidden" value="{{id}}" name="id"/>
+            <button type="submit">Go To Venue Page</button>
         </form>
         <br>
         {{address}}<br>
         {{city_name}}, {{region_abbr}}, {{postal_code}}<br>
-
+        {{id}}<br>
         <a href="{{url}}">{{url}}</a> <br>
-
-
     </li>
     {{/venueList}}
-
-
 </ul>
+
 
 <br>
 </body>
