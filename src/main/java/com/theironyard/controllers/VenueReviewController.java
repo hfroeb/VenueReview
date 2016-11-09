@@ -27,10 +27,6 @@ import java.util.Scanner;
 /**
  * Created by halleyfroeb on 11/1/16.
  * User(String username, String password, String email)
- * Review(User author, int eventfulKey, String reviewText, int rating)
- *
- * http://api.eventful.com/json/events/search?...&location=San+Diego
-    http://api.eventful.com/rest/venues/search?...&keywords=Restaurant&location=San+Diego
  */
 @Controller
 public class VenueReviewController {
@@ -131,7 +127,7 @@ public class VenueReviewController {
                 currentVenue = venue;
             }
         }
-        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueID=" + id + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
+        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
         System.out.println(urlString);
         URL url = new URL(urlString);
 
