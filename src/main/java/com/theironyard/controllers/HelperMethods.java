@@ -8,6 +8,10 @@ import com.theironyard.JsonObjects.Event.JsonEvent;
 import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
 import com.theironyard.entities.Review;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,11 +19,23 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by jakefroeb on 11/9/16.
  */
-public class ControllerMethods {
+
+public class HelperMethods {
+
+    //static Logger logger = Logger.getLogger(HelperMethods.class.getName());
+
+
+   // @Autowired
+   // static Environment env;
+    //private static String APIKEY = env.getProperty("TICKETMASTER_APIKEY");
+
+    static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
 
     public static List<DisplayVenue> createDisplayVenue( Venue[] venues) {
         List<DisplayVenue> showVenueList = new ArrayList<>();
@@ -57,8 +73,9 @@ public class ControllerMethods {
     }
 
     public static Event[] retrieveEvents(String id)throws Exception{
+        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonEventResults="";
-        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
+        String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=" + APIKEY);
         URL url = new URL(urlString);
 
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -116,10 +133,11 @@ public class ControllerMethods {
         return averageRating;
     }
     public static Venue[] retrieveVenues(String input)throws Exception{
+        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonResults = "";
         String encoded = URLEncoder.encode(input, "UTF-8");
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword="
-                + encoded + "&apikey=IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ");
+                + encoded + "&apikey=" + APIKEY);
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
