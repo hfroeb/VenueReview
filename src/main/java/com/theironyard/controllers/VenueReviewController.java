@@ -1,11 +1,8 @@
 package com.theironyard.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theironyard.DisplayEvent;
 import com.theironyard.DisplayVenue;
 import com.theironyard.JsonObjects.Event.Event;
-import com.theironyard.JsonObjects.Event.JsonEvent;
-import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
 import com.theironyard.entities.Review;
 import com.theironyard.entities.User;
@@ -19,13 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by halleyfroeb on 11/1/16.
@@ -45,7 +36,7 @@ public class VenueReviewController {
         if (venues==null){
             return "home";
         }
-        List<DisplayVenue> showVenueList = ControllerMethods.createDisplayVenue(venues);
+        List<DisplayVenue> showVenueList = HelperMethods.createDisplayVenue(venues);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         session.setAttribute("venueList", showVenueList);
         model.addAttribute("user", user);
@@ -56,7 +47,7 @@ public class VenueReviewController {
 
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(HttpSession session, String userInput) throws Exception {
-        Venue[] venues = ControllerMethods.retrieveVenues(userInput);
+        Venue[] venues = HelperMethods.retrieveVenues(userInput);
         session.setAttribute("venues", venues);
         return "redirect:/";
     }
@@ -71,11 +62,11 @@ public class VenueReviewController {
                 currentVenue = venue;
             }
         }
-        Event[] events = ControllerMethods.retrieveEvents(id);
-        List<DisplayEvent> eventDisplayList = ControllerMethods.createDisplayEventList(events);
+        Event[] events = HelperMethods.retrieveEvents(id);
+        List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
-        int averageRating = ControllerMethods.getAverageRating(displayReviews);
+        int averageRating = HelperMethods.getAverageRating(displayReviews);
         if(displayReviews.size()==0){averageRating = 0;}
         else {
             averageRating = averageRating / displayReviews.size();
