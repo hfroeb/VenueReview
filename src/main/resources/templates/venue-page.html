@@ -21,6 +21,16 @@
 <body>
 <div id="container">
     <div id="header">
+
+<form action="/home" method="post">
+    <button type="submit">Home</button>
+</form>
+
+<form action="/search" method="post">
+    <input type="hidden" value="{{userInput}}" name="userInput"/>
+    <button type="submit">Back to Search Results</button>
+</form>
+
         {{#venue}}
         <h1>{{venue_name}}</h1>
         <br>
@@ -47,6 +57,7 @@
                 Starting time: {{time}}
                 <br>
                 <a href="{{url}}">{{url}}</a> <br>
+                <img src="{{imageUrl}}" width="300"/>
             </li>
             {{/events}}
         </ul>

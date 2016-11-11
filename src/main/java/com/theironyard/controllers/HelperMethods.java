@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theironyard.DisplayEvent;
 import com.theironyard.DisplayVenue;
 import com.theironyard.JsonObjects.Event.Event;
+import com.theironyard.JsonObjects.Event.Image;
 import com.theironyard.JsonObjects.Event.JsonEvent;
 import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
@@ -119,7 +120,15 @@ public class HelperMethods {
             if (eventUrl == null) {
                 eventUrl = "url not found";
             }
-            DisplayEvent displayEvent = new DisplayEvent(name, type, startDate, time, eventUrl);
+            Image image = event.getImages().get(0);
+            if (image == null){
+                image = new Image();
+            }
+            String imageUrl = image.getUrl();
+            if (imageUrl == null) {
+                imageUrl = "image not found";
+            }
+            DisplayEvent displayEvent = new DisplayEvent(name, type, startDate, time, eventUrl, imageUrl);
             displayEvents.add(displayEvent);
         }
         return displayEvents;

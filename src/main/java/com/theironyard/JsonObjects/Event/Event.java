@@ -2,9 +2,10 @@ package com.theironyard.JsonObjects.Event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * Created by jakefroeb on 11/8/16.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
     private String name;
@@ -12,7 +13,21 @@ public class Event {
     private String id;
     private String url;
     private Dates dates;
+    private List<Image> images;
 
+    public List<Image> getImages() {
+        if (images == null) {
+            List<Image> images = new ArrayList<>();
+            Image image = new Image();
+            images.add(image);
+            return images;
+        } else
+            return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
 
     public String getName() {
         return name;
@@ -47,10 +62,10 @@ public class Event {
     }
 
     public Dates getDates() {
-        if(dates== null)
+        if (dates == null)
             return new Dates();
         else
-        return dates;
+            return dates;
     }
 
     public void setDates(Dates dates) {
