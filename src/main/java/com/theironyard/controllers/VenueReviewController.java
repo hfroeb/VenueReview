@@ -48,6 +48,7 @@ public class VenueReviewController {
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(HttpSession session, String userInput) throws Exception {
         Venue[] venues = HelperMethods.retrieveVenues(userInput);
+        session.setAttribute("userInput", userInput);
         session.setAttribute("venues", venues);
         return "redirect:/";
     }
@@ -71,6 +72,7 @@ public class VenueReviewController {
         else {
             averageRating = averageRating / displayReviews.size();
         }
+        model.addAttribute("userInput", session.getAttribute("userInput"));
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("user", user);
         model.addAttribute("reviews", displayReviews);
@@ -139,5 +141,10 @@ public class VenueReviewController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    @RequestMapping(path = "/home", method = RequestMethod.POST)
+    public String returnHome(){
+        return "home";
     }
 }

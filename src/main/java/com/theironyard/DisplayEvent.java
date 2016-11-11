@@ -1,5 +1,9 @@
 package com.theironyard;
 
+import com.theironyard.JsonObjects.Event.Image;
+
+import java.util.List;
+
 /**
  * Created by jakefroeb on 11/8/16.
  *
@@ -10,6 +14,7 @@ public class DisplayEvent {
     public String startDate;
     public String time;
     public String url;
+    public String imageUrl;
 
     public String getName() {
         return name;
@@ -51,16 +56,25 @@ public class DisplayEvent {
         this.url = url;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public DisplayEvent() {
 
     }
 
-    public DisplayEvent(String name, String type, String startDate, String time, String url) {
+    public DisplayEvent(String name, String type, String startDate, String time, String url, String imageUrl) {
 
         this.name = name;
         this.type = type;
         this.startDate = startDate;
         this.time = time;
         this.url = url;
+        this.imageUrl = imageUrl;
     }
 }
