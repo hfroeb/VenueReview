@@ -7,3 +7,5 @@ $(':radio').change(
         $('.choice').text($(this).val() + ' stars');
     }
 )
+
+$("body").css("background-image", "url(/image.jpg)");
