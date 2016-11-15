@@ -6,43 +6,93 @@
 
 <style>
     body {
-        background-image: url("http://images.medicaldaily.com/sites/medicaldaily.com/files/2014/06/26/concert.jpg");
+        background-image: url("http://edgetulsa.com/wp-content/uploads/2015/07/crowd-at-concert-2.jpg");
         background-repeat: no-repeat;
-        background-size: 100%
+        background-size: 100%;
+        background-attachment: fixed;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
     }
     .searchbar {
         margin: auto;
         width: 50%;
         padding: 1px;
+        padding-bottom: 20px;
         text-align: center;
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        color: white;
     }
-    /*input[type=text] {*/
-        /*width: 120px;*/
-        /*box-sizing: border-box;*/
-        /*border: 2px solid #ccc;*/
-        /*border-radius: 15px;*/
-        /*font-size: 16px;*/
-        /*background-color: white;*/
-        /*background-position: 10px 10px;*/
-        /*background-repeat: no-repeat;*/
-        /*padding: 12px 20px 12px 40px;*/
-        /*-webkit-transition: width 0.4s ease-in-out;*/
-        /*transition: width 0.4s ease-in-out;*/
-    /*}*/
+    input[ID=searchbar]{
+            width: 250px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 9px;
+            font-size: 12px;
+            background-color: white;
+            background-position: 8px 8px;
+            background-repeat: no-repeat;
+            padding: 7px 10px 7px 10px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
 
-    /*input[type=text]:focus {*/
-        /*width: 100%;*/
-    /*}*/
+        }
+
+    input[ID=login]{
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 9px;
+        background-color: white;
+        color: gray;
+        padding: 3px 10px 3px 10px;
+    }
+    input[ID=password]{
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 9px;
+        background-color: white;
+        color: gray;
+        padding: 3px 10px 3px 10px;
+    }
+    input[placeholder]{
+        color: gray;
+    }
+
+    input[ID=searchbar]:focus {
+            width: 100%;
+            color: gray;
+        }
     .navbar{
-        opacity: 0.8;
+        background: rgba(230, 242, 255, 0.8);
     }
     .searchresults{
-        background-color: ghostwhite;
-        opacity: .8 ;
+        padding-top: 0px;
+        background: rgba(230, 242, 255, 0.9);
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        width: 60%;
+        border-radius: 9px;
+        margin:auto ;
     }
     hr {
-        width:100%; height:1px; color: #000000; background: #000000 }
+        width:100%; height:1px; color: white; background: white;
+        white-space: nowrap;
+    }
+
+    button[class="btn btn-default btn-sm"]{
+        border-radius: 9px;
+    }
+    button[class="btn btn-default"]{
+        border-radius: 9px;
+    }
+    footer{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 1px;
+        background-color: #e6f2ff;
+        text-align: right;
+        height: 7%;
+    }
 
 
 </style>
@@ -52,19 +102,13 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false">>
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand">
                 {{^user}}
                 <form action="/login"method="post">
-                    <input type="text" placeholder="Email Address" name="email"/>
-                    <input type="password" placeholder="Password" name="password"/>
+                    <input type="text" ID="login" placeholder="Email Address" name="email"/>
+                    <input type="password" ID="password" placeholder="Password" name="password"/>
                     <input type="hidden" value="/" name="route"/>
-                    <button type="submit">Login</button>
+                    <button type="submit"class="btn btn-default btn-sm">Login</button>
                 </form>
                 {{/user}}
                 {{#user}}
@@ -72,24 +116,24 @@
                 {{/user}}
             </a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <a class="navbar-brand">
             <ul class="nav navbar-nav nav navbar-right">
                 <li>
                     {{^user}}
-                    <form action="/sign-up" method="post">
-                        <button type="submit">Create Profile</button>
+                    <form action="/sign-up"  method="post">
+                        <button type="submit" class="btn btn-default btn-sm">Sign Up</button>
                     </form>
                     {{/user}}
                 </li>
                 <li>
                     {{#user}}
                     <form action="/logout" method="post">
-                        <button type="submit">Logout</button>
+                        <button type="submit"class="btn btn-default btn-sm">Logout</button>
                     </form>
                     {{/user}}
                 </li>
-
             </ul>
+        </a>
         </div>
 
     </div>
@@ -100,17 +144,18 @@
                  <hr/>
                     <h3>Read, Rate, and Review Venues</h3>
                             <form action="/search" method="post">
-                                <input type="text" placeholder="Search for Venues by Name or Location" size="60" name="userInput"/>
-                                <button type="submit"class="btn btn-default btn-lg">Search</button>
+                                <input type="text" ID="searchbar" placeholder="Search for Venues by Name or Location" size="60" name="userInput"/>
+                                <button type="submit"class="btn btn-default">Search</button>
                             </form>
                 </div>
 
 <div class="searchresults">
+<br>
 
 <ul>
     {{#venueList}}
     <li>
-        <h3>{{venue_name}}</h3>
+        <h4>{{venue_name}}</h4>
         <form action="/venue-page" method="post">
             <input type="hidden" value="{{id}}" name="id"/>
             <button type="submit"class="btn btn-primary">Go To Venue Page</button>
@@ -124,6 +169,13 @@
     {{/venueList}}
 </ul>
 </div>
+
+<footer>
+    Event data brought to you by:
+    <img src="http://developer.ticketmaster.com/assets/img/branding-guide/white-logo@3x.png" alt="ticketmaster logo"
+         style="width:50px;height: 50px;">
+</footer>
+
 
 
 </body>

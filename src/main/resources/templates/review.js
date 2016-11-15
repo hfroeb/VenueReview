@@ -8,4 +8,19 @@ $(':radio').change(
     }
 )
 
-$("body").css("background-image", "url(/image.jpg)");
+function getRating() {
+    var rating = document.getElementById("rating").innerHTML.valueOf();
+    if(rating == 1){
+        var stars = "★";
+    }if(rating == 2){
+        var stars = "★★";
+    } if(rating == 3) {
+        var stars = "★★★";
+    }if(rating == 4) {
+        var stars = "★★★★";
+    }if(rating == 5){
+        var stars= "★★★★★";
+    }
+    document.write(stars);
+}
+
