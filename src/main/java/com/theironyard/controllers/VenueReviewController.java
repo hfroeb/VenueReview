@@ -63,6 +63,7 @@ public class VenueReviewController {
                 currentVenue = venue;
             }
         }
+
         Event[] events = HelperMethods.retrieveEvents(id);
         List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
@@ -72,6 +73,10 @@ public class VenueReviewController {
         else {
             averageRating = averageRating / displayReviews.size();
         }
+        String venueName = currentVenue.venue_name;
+       // String imageUrl = HelperMethods.getVenueImage(venueName);
+//        System.out.println(imageUrl);
+//        model.addAttribute("imageUrl", imageUrl);
         model.addAttribute("userInput", session.getAttribute("userInput"));
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("user", user);

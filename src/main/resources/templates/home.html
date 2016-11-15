@@ -1,37 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+<style>
+    body {
+        background-image: url("http://images.medicaldaily.com/sites/medicaldaily.com/files/2014/06/26/concert.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%
+    }
+    .searchbar {
+        margin: auto;
+        width: 50%;
+        padding: 1px;
+        text-align: center;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    }
+    /*input[type=text] {*/
+        /*width: 120px;*/
+        /*box-sizing: border-box;*/
+        /*border: 2px solid #ccc;*/
+        /*border-radius: 15px;*/
+        /*font-size: 16px;*/
+        /*background-color: white;*/
+        /*background-position: 10px 10px;*/
+        /*background-repeat: no-repeat;*/
+        /*padding: 12px 20px 12px 40px;*/
+        /*-webkit-transition: width 0.4s ease-in-out;*/
+        /*transition: width 0.4s ease-in-out;*/
+    /*}*/
+
+    /*input[type=text]:focus {*/
+        /*width: 100%;*/
+    /*}*/
+    .navbar{
+        opacity: 0.8;
+    }
+    .searchresults{
+        background-color: ghostwhite;
+        opacity: .8 ;
+    }
+    hr {
+        width:100%; height:1px; color: #000000; background: #000000 }
+
+
+</style>
+</head>
 <body>
 
-{{^user}}
-<form action="/login"method="post">
-    <input type="text" placeholder="Email Address" name="email"/>
-    <input type="password" placeholder="Password" name="password"/>
-    <input type="hidden" value="/" name="route"/>
-    <button type="submit">Login</button>
-</form>
-<br>
-<form action="/sign-up" method="post">
-    <button type="submit">Create Profile</button>
-</form>
-{{/user}}
-<br>
-{{#user}}
-<form action="/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
-Welcome {{name}}
-{{/user}}
-<form action="/search" method="post">
-    <input type="text" placeholder="Search by com.theironyard.JsonObjects.JsonVenue1" name="userInput"/>
-    <button type="submit">Search</button>
-</form>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false">>
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">
+                {{^user}}
+                <form action="/login"method="post">
+                    <input type="text" placeholder="Email Address" name="email"/>
+                    <input type="password" placeholder="Password" name="password"/>
+                    <input type="hidden" value="/" name="route"/>
+                    <button type="submit">Login</button>
+                </form>
+                {{/user}}
+                {{#user}}
+                Welcome, {{name}}
+                {{/user}}
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav nav navbar-right">
+                <li>
+                    {{^user}}
+                    <form action="/sign-up" method="post">
+                        <button type="submit">Create Profile</button>
+                    </form>
+                    {{/user}}
+                </li>
+                <li>
+                    {{#user}}
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+                    {{/user}}
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+    <div class="searchbar">
+                    <h1>Space Case</h1>
+                 <hr/>
+                    <h3>Read, Rate, and Review Venues</h3>
+                            <form action="/search" method="post">
+                                <input type="text" placeholder="Search for Venues by Name or Location" size="60" name="userInput"/>
+                                <button type="submit"class="btn btn-default btn-lg">Search</button>
+                            </form>
+                </div>
+
+<div class="searchresults">
+
 <ul>
     {{#venueList}}
     <li>
-        <h1>{{venue_name}}</h1>
+        <h3>{{venue_name}}</h3>
         <form action="/venue-page" method="post">
             <input type="hidden" value="{{id}}" name="id"/>
-            <button type="submit">Go To Venue Page</button>
+            <button type="submit"class="btn btn-primary">Go To Venue Page</button>
         </form>
         <br>
         {{address}}<br>
@@ -41,8 +123,9 @@ Welcome {{name}}
     </li>
     {{/venueList}}
 </ul>
+</div>
 
 
-<br>
 </body>
+
 </html>
