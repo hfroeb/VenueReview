@@ -8,20 +8,21 @@ import com.theironyard.JsonObjects.Event.Image;
 import com.theironyard.JsonObjects.Event.JsonEvent;
 import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
-import com.theironyard.entities.Review;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 
+import com.theironyard.entities.Review;
+import net.minidev.json.JSONObject;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by jakefroeb on 11/9/16.
@@ -32,13 +33,13 @@ public class HelperMethods {
     //static Logger logger = Logger.getLogger(HelperMethods.class.getName());
 
 
-   // @Autowired
-   // static Environment env;
+    // @Autowired
+    // static Environment env;
     //private static String APIKEY = env.getProperty("TICKETMASTER_APIKEY");
 
     static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
 
-    public static List<DisplayVenue> createDisplayVenue( Venue[] venues) {
+    public static List<DisplayVenue> createDisplayVenue(Venue[] venues) {
         List<DisplayVenue> showVenueList = new ArrayList<>();
         for (Venue venue : venues) {
             String id = venue.getId();
@@ -73,9 +74,9 @@ public class HelperMethods {
         return showVenueList;
     }
 
-    public static Event[] retrieveEvents(String id)throws Exception{
+    public static Event[] retrieveEvents(String id) throws Exception {
         //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
-        String jsonEventResults="";
+        String jsonEventResults = "";
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=" + APIKEY);
         URL url = new URL(urlString);
 
@@ -97,7 +98,8 @@ public class HelperMethods {
         Event[] events = searchResults.get_embedded().getEvents();
         return events;
     }
-    public static List<DisplayEvent> createDisplayEventList(Event[] events){
+
+    public static List<DisplayEvent> createDisplayEventList(Event[] events) {
         List<DisplayEvent> displayEvents = new ArrayList<>();
         for (Event event : events) {
             String name = event.getName();
@@ -121,7 +123,7 @@ public class HelperMethods {
                 eventUrl = "url not found";
             }
             Image image = event.getImages().get(0);
-            if (image == null){
+            if (image == null) {
                 image = new Image();
             }
             String imageUrl = image.getUrl();
@@ -133,6 +135,7 @@ public class HelperMethods {
         }
         return displayEvents;
     }
+
     public static int getAverageRating(List<Review> displayReviews) {
         int averageRating = 0;
         for (Review review : displayReviews) {
@@ -141,7 +144,8 @@ public class HelperMethods {
         }
         return averageRating;
     }
-    public static Venue[] retrieveVenues(String input)throws Exception{
+
+    public static Venue[] retrieveVenues(String input) throws Exception {
         //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonResults = "";
         String encoded = URLEncoder.encode(input, "UTF-8");
@@ -166,4 +170,6 @@ public class HelperMethods {
         Venue[] venues = searchResults.get_embedded().getVenues();
         return venues;
     }
+
 }
+
