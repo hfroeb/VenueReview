@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,19 +69,24 @@ public class VenueReviewController {
         List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
+        List<Review> displayReviewStars = new ArrayList<>();
+        for (Review review: displayReviews){
+            int rating = review.getRating();
+            String starRating = HelperMethods.starReview(rating);
+            Review review1 = new Review(review.getText(), review.getRating(), review.getUser(), review.getVenueId(), starRating);
+            displayReviewStars.add(review1);
+        }
         int averageRating = HelperMethods.getAverageRating(displayReviews);
-        if(displayReviews.size()==0){averageRating = 0;}
+        String averageStarRating = "";
+        if(displayReviews.size()==0){averageStarRating= "";}
         else {
             averageRating = averageRating / displayReviews.size();
+            averageStarRating = HelperMethods.starReview(averageRating);
         }
-        String venueName = currentVenue.venue_name;
-       // String imageUrl = HelperMethods.getVenueImage(venueName);
-//        System.out.println(imageUrl);
-//        model.addAttribute("imageUrl", imageUrl);
         model.addAttribute("userInput", session.getAttribute("userInput"));
-        model.addAttribute("averageRating", averageRating);
+        model.addAttribute("averageRating", averageStarRating);
         model.addAttribute("user", user);
-        model.addAttribute("reviews", displayReviews);
+        model.addAttribute("reviews", displayReviewStars);
         model.addAttribute("events", eventDisplayList);
         model.addAttribute("venue", currentVenue);
         return "/venue-page";
@@ -88,7 +94,7 @@ public class VenueReviewController {
 
 
     @RequestMapping(path = "/create-review", method = RequestMethod.POST)
-    public String createReview(HttpSession session, String rating, String text) {
+    public String createReview(HttpSession session, String rating, String text, Model model) {
         String email = (String) session.getAttribute("email");
         User user = users.findFirstByEmail(email);
         String id = (String) session.getAttribute("id");

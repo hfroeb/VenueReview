@@ -220,9 +220,7 @@
         {{#reviews}}
         <li>
             <h5> {{user.name}} </h5>
-
-            <input type="number" id="rating" value="{{rating}}" hidden/>
-<div id="stars"></div>
+            {{starRating}}<br>
             Review: {{text}} <br> <br>
         </li>
         {{/reviews}}
