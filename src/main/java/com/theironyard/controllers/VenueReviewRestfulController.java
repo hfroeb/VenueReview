@@ -10,71 +10,71 @@ import java.util.List;
 /**
  * Created by jakefroeb on 11/11/16.
  */
-//@RestController
-//public class VenueReviewRestfulController {
-//    @Autowired
-//    UserRepository users;
-//    @Autowired
-//    ReviewRepository reviews;
-//    @CrossOrigin
-//    @RequestMapping(path="/adminLogin",method = RequestMethod.GET)
-//    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
-//        List<User> admins = users.findAllByAdmin(true);
-//        for (User user: admins) {
-//            if(email.equals(user.getEmail())&& password.equals(user.getPassword())){
-//                session.setAttribute("user", user);
-//                return user;
-//            }
-//        }
-//        return null;
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/users", method = RequestMethod.GET)
-//    public List<User> getUsers(HttpSession session){
-////        if(session.getAttribute("user")==null){
-////            return null;
-////        }
-//        List<User> retrievedUsers = (List<User>) users.findAll();
-//        return retrievedUsers;
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/reviews", method = RequestMethod.GET)
-//    public List<Review> getReviews(HttpSession session){
+@RestController
+public class VenueReviewRestfulController {
+    @Autowired
+    UserRepository users;
+    @Autowired
+    ReviewRepository reviews;
+    @CrossOrigin
+    @RequestMapping(path="/adminLogin",method = RequestMethod.GET)
+    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
+        List<User> admins = users.findAllByAdmin(true);
+        for (User user: admins) {
+            if(email.equals(user.getEmail())&& password.equals(user.getPassword())){
+                session.setAttribute("user", user);
+                return user;
+            }
+        }
+        return null;
+    }
+    @CrossOrigin
+    @RequestMapping(path="/users", method = RequestMethod.GET)
+    public List<User> getUsers(HttpSession session){
 //        if(session.getAttribute("user")==null){
 //            return null;
 //        }
-//        List<Review> reviewList = (List<Review>) reviews.findAll();
-//        return reviewList;
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/delete-user", method = RequestMethod.POST)
-//    public void deleteUser(@RequestParam("id") Integer id,HttpSession session){
-//        if(session.getAttribute("user")==null){
-//        }else {
-//            users.delete(id);
-//        }
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/delete-review", method = RequestMethod.DELETE)
-//    public void deleteReview(@RequestParam("id") Integer id, HttpSession session){
-//        if(session.getAttribute("user")==null){
-//        }else {
-//            reviews.delete(id);
-//        }
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/approve-review", method = RequestMethod.POST)
-//    public void approveReview(@RequestParam("id") Integer id, HttpSession session){
-//        if(session.getAttribute("user")==null){}
-//        else{
-//            Review review = reviews.findOne(id);
-//            review.setApproved(true);
-//            reviews.save(review);
-//        }
-//    }
-//    @CrossOrigin
-//    @RequestMapping(path="/adminLogout", method = RequestMethod.POST)
-//    public void logout(HttpSession session){
-//        session.invalidate();
-//    }
-//}
+        List<User> retrievedUsers = (List<User>) users.findAll();
+        return retrievedUsers;
+    }
+    @CrossOrigin
+    @RequestMapping(path="/reviews", method = RequestMethod.GET)
+    public List<Review> getReviews(HttpSession session){
+        if(session.getAttribute("user")==null){
+            return null;
+        }
+        List<Review> reviewList = (List<Review>) reviews.findAll();
+        return reviewList;
+    }
+    @CrossOrigin
+    @RequestMapping(path="/delete-user", method = RequestMethod.POST)
+    public void deleteUser(@RequestParam("id") Integer id,HttpSession session){
+        if(session.getAttribute("user")==null){
+        }else {
+            users.delete(id);
+        }
+    }
+    @CrossOrigin
+    @RequestMapping(path="/delete-review", method = RequestMethod.DELETE)
+    public void deleteReview(@RequestParam("id") Integer id, HttpSession session){
+        if(session.getAttribute("user")==null){
+        }else {
+            reviews.delete(id);
+        }
+    }
+    @CrossOrigin
+    @RequestMapping(path="/approve-review", method = RequestMethod.POST)
+    public void approveReview(@RequestParam("id") Integer id, HttpSession session){
+        if(session.getAttribute("user")==null){}
+        else{
+            Review review = reviews.findOne(id);
+            review.setApproved(true);
+            reviews.save(review);
+        }
+    }
+    @CrossOrigin
+    @RequestMapping(path="/adminLogout", method = RequestMethod.POST)
+    public void logout(HttpSession session){
+        session.invalidate();
+    }
+}
