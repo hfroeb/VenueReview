@@ -22,6 +22,9 @@ public class User {
     @Column(nullable = false, unique = true)
     String email;
 
+    @Column(nullable = false)
+    Boolean admin;
+
     public User() {
     }
 
@@ -29,6 +32,15 @@ public class User {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.admin = false;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     public int getId() {

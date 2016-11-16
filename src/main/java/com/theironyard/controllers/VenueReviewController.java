@@ -33,11 +33,13 @@ public class VenueReviewController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String get(HttpSession session, Model model) throws Exception {
+        List<DisplayVenue> showVenueList = new ArrayList<>();
         Venue[] venues = (Venue[]) session.getAttribute("venues");
         if (venues==null){
-            return "home";
         }
-        List<DisplayVenue> showVenueList = HelperMethods.createDisplayVenue(venues);
+        else {
+            showVenueList = HelperMethods.createDisplayVenue(venues);
+        }
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         session.setAttribute("venueList", showVenueList);
         model.addAttribute("user", user);
