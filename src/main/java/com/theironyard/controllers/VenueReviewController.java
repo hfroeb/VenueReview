@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * Created by halleyfroeb on 11/1/16.
- * User(String username, String password, String email)
+ *
  */
 @Controller
 public class VenueReviewController {
@@ -64,7 +64,6 @@ public class VenueReviewController {
                 currentVenue = venue;
             }
         }
-
         Event[] events = HelperMethods.retrieveEvents(id);
         List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
@@ -105,7 +104,6 @@ public class VenueReviewController {
 
     @RequestMapping(path = "/venue-page", method = RequestMethod.POST)
     public String venuePage(HttpSession session, String id) {
-        System.out.println(id);
         session.setAttribute("id", id);
         return "redirect:/venue-page";
     }
