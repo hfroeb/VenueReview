@@ -25,11 +25,21 @@ public class Review {
     @Column(nullable = false)
     String venueId;
 
+    String starRating;
+
     public Review(String text, int rating, User user, String venueId) {
         this.text = text;
         this.rating = rating;
         this.user = user;
         this.venueId = venueId;
+    }
+
+    public Review(String text, int rating, User user, String venueId, String starRating) {
+        this.text = text;
+        this.rating = rating;
+        this.user = user;
+        this.venueId = venueId;
+        this.starRating = starRating;
     }
 
     public Review() {

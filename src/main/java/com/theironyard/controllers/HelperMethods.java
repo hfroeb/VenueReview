@@ -10,13 +10,7 @@ import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
 
 import com.theironyard.entities.Review;
-import net.minidev.json.JSONObject;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -29,13 +23,6 @@ import java.util.Scanner;
  */
 
 public class HelperMethods {
-
-    //static Logger logger = Logger.getLogger(HelperMethods.class.getName());
-
-
-    // @Autowired
-    // static Environment env;
-    //private static String APIKEY = env.getProperty("TICKETMASTER_APIKEY");
 
     static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
 
@@ -75,7 +62,6 @@ public class HelperMethods {
     }
 
     public static Event[] retrieveEvents(String id) throws Exception {
-        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonEventResults = "";
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=" + APIKEY);
         URL url = new URL(urlString);
@@ -149,7 +135,6 @@ public class HelperMethods {
     }
 
     public static Venue[] retrieveVenues(String input) throws Exception {
-        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonResults = "";
         String encoded = URLEncoder.encode(input, "UTF-8");
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword="
@@ -200,5 +185,33 @@ public class HelperMethods {
             }
     }
     return displayTime;
-}}
+}
+    public static String starReview(int rating){
+        String starRating;
+        switch (rating) {
+            case 1: {
+                starRating = "★☆☆☆☆";
+                break;
+            }
+            case 2: {
+                starRating = "★★☆☆☆";
+                break;
+            }
+            case 3: {
+                starRating = "★★★☆☆";
+                break;
+            }
+            case 4: {
+                starRating = "★★★★☆";
+                break;
+            }
+            case 5: {
+                starRating = "★★★★★";
+                break;
+            }
+            default: starRating = "";
+        }
+        return starRating;
+    }
+}
 
