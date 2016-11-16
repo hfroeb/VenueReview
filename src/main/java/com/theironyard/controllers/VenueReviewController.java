@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +69,12 @@ public class VenueReviewController {
         List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
+        List<Review> approvedReviews = new ArrayList<>();
+        for (Review review: displayReviews) {
+            if(review.isApproved()){
+                approvedReviews.add(review);
+            }
+        }
         int averageRating = HelperMethods.getAverageRating(displayReviews);
         if(displayReviews.size()==0){averageRating = 0;}
         else {
@@ -80,7 +87,7 @@ public class VenueReviewController {
         model.addAttribute("userInput", session.getAttribute("userInput"));
         model.addAttribute("averageRating", averageRating);
         model.addAttribute("user", user);
-        model.addAttribute("reviews", displayReviews);
+        model.addAttribute("reviews", approvedReviews);
         model.addAttribute("events", eventDisplayList);
         model.addAttribute("venue", currentVenue);
         return "/venue-page";

@@ -21,7 +21,7 @@ public class VenueReviewRestfulController {
     @Autowired
     ReviewRepository reviews;
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin
     @RequestMapping(path="/adminLogin",method = RequestMethod.GET)
     public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
         List<User> admins = users.findAllByAdmin(true);
@@ -42,7 +42,7 @@ public class VenueReviewRestfulController {
         List<User> retrievedUsers = (List<User>) users.findAll();
         return retrievedUsers;
     }
-
+    @CrossOrigin
     @RequestMapping(path="/reviews", method = RequestMethod.GET)
     public List<Review> getReviews(HttpSession session){
         if(session.getAttribute("user")==null){
@@ -51,7 +51,7 @@ public class VenueReviewRestfulController {
         List<Review> reviewList = (List<Review>) reviews.findAll();
         return reviewList;
     }
-
+    @CrossOrigin
     @RequestMapping(path="/delete-user", method = RequestMethod.POST)
     public void deleteUser(@RequestParam("id") Integer id,HttpSession session){
         if(session.getAttribute("user")==null){
@@ -59,8 +59,8 @@ public class VenueReviewRestfulController {
             users.delete(id);
         }
     }
-
-    @RequestMapping(path="/delete-review", method = RequestMethod.POST)
+    @CrossOrigin
+    @RequestMapping(path="/delete-review", method = RequestMethod.DELETE)
     public void deleteReview(@RequestParam("id") Integer id, HttpSession session){
         if(session.getAttribute("user")==null){
 
@@ -68,6 +68,17 @@ public class VenueReviewRestfulController {
             reviews.delete(id);
         }
     }
+    @CrossOrigin
+    @RequestMapping(path="/approve-review", method = RequestMethod.POST)
+    public void approveReview(@RequestParam("id") Integer id, HttpSession session){
+        if(session.getAttribute("user")==null){}
+        else{
+            Review review = reviews.findOne(id);
+            review.setApproved(true);
+            reviews.save(review);
+        }
+    }
+    @CrossOrigin
     @RequestMapping(path="/adminLogout", method = RequestMethod.POST)
     public void logout(HttpSession session){
         session.invalidate();

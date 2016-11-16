@@ -10,7 +10,6 @@ import com.theironyard.JsonObjects.Venue.Json1;
 import com.theironyard.JsonObjects.Venue.Venue;
 
 import com.theironyard.entities.Review;
-import net.minidev.json.JSONObject;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
