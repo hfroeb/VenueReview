@@ -1,5 +1,7 @@
 package com.theironyard.entities;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 
 /**
@@ -25,6 +27,9 @@ public class Review {
     @Column(nullable = false)
     String venueId;
 
+    @Column(nullable = false)
+    Boolean approved;
+
     String starRating;
 
     public Review(String text, int rating, User user, String venueId) {
@@ -32,6 +37,7 @@ public class Review {
         this.rating = rating;
         this.user = user;
         this.venueId = venueId;
+        this.approved = false;
     }
 
     public Review(String text, int rating, User user, String venueId, String starRating) {
@@ -43,6 +49,14 @@ public class Review {
     }
 
     public Review() {
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 
     public int getId() {

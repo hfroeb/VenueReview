@@ -16,65 +16,61 @@ public class VenueReviewRestfulController {
     UserRepository users;
     @Autowired
     ReviewRepository reviews;
+
     @CrossOrigin
-    @RequestMapping(path="/adminLogin",method = RequestMethod.GET)
-    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session){
+    @RequestMapping(path = "/adminLogin", method = RequestMethod.GET)
+    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
         List<User> admins = users.findAllByAdmin(true);
-        for (User user: admins) {
-            if(email.equals(user.getEmail())&& password.equals(user.getPassword())){
-                session.setAttribute("user", user);
+        for (User user : admins) {
+            if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
+                session.setAttribute("admin", user.getAdmin());
                 return user;
             }
         }
         return null;
     }
+
     @CrossOrigin
-    @RequestMapping(path="/users", method = RequestMethod.GET)
-    public List<User> getUsers(HttpSession session){
-//        if(session.getAttribute("user")==null){
-//            return null;
-//        }
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    public List<User> getUsers(HttpSession session) {
         List<User> retrievedUsers = (List<User>) users.findAll();
         return retrievedUsers;
     }
+
     @CrossOrigin
-    @RequestMapping(path="/reviews", method = RequestMethod.GET)
-    public List<Review> getReviews(HttpSession session){
-        if(session.getAttribute("user")==null){
-            return null;
-        }
+    @RequestMapping(path = "/reviews", method = RequestMethod.GET)
+    public List<Review> getReviews(HttpSession session) {
         List<Review> reviewList = (List<Review>) reviews.findAll();
         return reviewList;
     }
+
     @CrossOrigin
-    @RequestMapping(path="/delete-user", method = RequestMethod.POST)
-    public void deleteUser(@RequestParam("id") Integer id,HttpSession session){
-        if(session.getAttribute("user")==null){
-        }else {
+    @RequestMapping(path = "/delete-user", method = RequestMethod.DELETE)
+    public void deleteUser(@RequestParam("id") Integer id, HttpSession session) {
+        {
             users.delete(id);
         }
     }
+
     @CrossOrigin
-    @RequestMapping(path="/delete-review", method = RequestMethod.DELETE)
-    public void deleteReview(@RequestParam("id") Integer id, HttpSession session){
-        if(session.getAttribute("user")==null){
-        }else {
-            reviews.delete(id);
-        }
+    @RequestMapping(path = "/delete-review", method = RequestMethod.DELETE)
+    public void deleteReview(@RequestParam("id") Integer id, HttpSession session) {
+        reviews.delete(id);
+
     }
+
     @CrossOrigin
-    @RequestMapping(path="/approve-review", method = RequestMethod.POST)
-    public void approveReview(@RequestParam("id") Integer id, HttpSession session){
-        if(session.getAttribute("user")==null){}
-        else{
-            Review review = reviews.findOne(id);
-            review.setApproved(true);
-            reviews.save(review);
-        }
+    @RequestMapping(path = "/approve-review", method = RequestMethod.POST)
+    public void approveReview(@RequestParam("id") Integer id, HttpSession session) {
+        Review review = reviews.findOne(id);
+        review.setApproved(true);
+        reviews.save(review);
     }
-    @CrossOrigin
-    @RequestMapping(path="/adminLogout", method = RequestMethod.POST)
-    public void logout(HttpSession session){
-        session.invalidate();
-    }
+
+//    @CrossOrigin
+//    @RequestMapping(path="/adminLogout", method = RequestMethod.POST)
+//    public void logout(HttpSession session){
+//        session.invalidate();
+//    }
+//}
 }
