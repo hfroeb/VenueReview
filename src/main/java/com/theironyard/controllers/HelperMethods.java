@@ -114,10 +114,13 @@ public class HelperMethods {
             if (startDate == null) {
                 startDate = "date not found";
             }
+
             String time = event.getDates().getStart().getLocalTime();
             if (time == null) {
                 time = "start time not found";
             }
+            time = convertTime(time);
+
             String eventUrl = event.getUrl();
             if (eventUrl == null) {
                 eventUrl = "url not found";
@@ -170,6 +173,32 @@ public class HelperMethods {
         Venue[] venues = searchResults.get_embedded().getVenues();
         return venues;
     }
-
-}
+    public static String convertTime(String time){
+        String displayTime;
+        String[] columns = time.split(":");
+        String standardTime1 = columns[0] + columns[1];
+        int standardTime = (Integer.parseInt(standardTime1));
+        if (standardTime > 1200) {
+            standardTime = standardTime - 1200;
+            displayTime = Integer.toString(standardTime);
+            if (displayTime.length() > 3) {
+                displayTime = displayTime.substring(0, 2) + ":" + displayTime.substring(2, displayTime.length());
+                displayTime = displayTime + " PM";
+            } else {
+                displayTime = displayTime.substring(0, 1) + ":" + displayTime.substring(1, displayTime.length());
+                displayTime = displayTime + " PM";
+            }
+        }
+        else {
+            displayTime = Integer.toString(standardTime);
+            if (displayTime.length() > 3) {
+                displayTime = displayTime.substring(0, 2) + ":" + displayTime.substring(2, displayTime.length());
+                displayTime = displayTime + " AM";
+            } else {
+                displayTime = displayTime.substring(0, 1) + ":" + displayTime.substring(1, displayTime.length());
+                displayTime = displayTime + " AM";
+            }
+    }
+    return displayTime;
+}}
 
