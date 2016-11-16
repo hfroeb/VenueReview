@@ -93,7 +93,7 @@ public class HelperMethods {
         return events;
     }
 
-    public static List<DisplayEvent> createDisplayEventList(Event[] events) {
+    public static List<DisplayEvent> createDisplayEventList(Event[] events) throws ParseException {
         List<DisplayEvent> displayEvents = new ArrayList<>();
         for (Event event : events) {
             String name = event.getName();
@@ -107,12 +107,13 @@ public class HelperMethods {
             String startDate = event.getDates().getStart().getLocalDate();
             if (startDate == null) {
                 startDate = "date not found";
-            }
+            } else
+            startDate = convertDate(startDate);
 
             String time = event.getDates().getStart().getLocalTime();
             if (time == null) {
                 time = "start time not found";
-            }
+            } else
             time = convertTime(time);
 
             String eventUrl = event.getUrl();
