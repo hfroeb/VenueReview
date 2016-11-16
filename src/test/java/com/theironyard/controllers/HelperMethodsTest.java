@@ -3,6 +3,10 @@ package com.theironyard.controllers;
 import org.hibernate.annotations.SourceType;
 import org.junit.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -21,14 +25,5 @@ public class HelperMethodsTest {
         assertArrayEquals(expectedTimes, newTimes);
 }
 
-    public static void main(String[] args) {
-        String date = "2016-11-18";
-        String[] columns = date.split("-");
-
-        int day = Integer.parseInt(columns[2]);
-        int month = Integer.parseInt(columns[1]);
-        int year = Integer.parseInt(columns[0]);
-
-    }
 
 }

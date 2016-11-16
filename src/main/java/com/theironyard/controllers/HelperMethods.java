@@ -15,10 +15,9 @@ import com.theironyard.entities.Review;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -94,7 +93,7 @@ public class HelperMethods {
         return events;
     }
 
-    public static List<DisplayEvent> createDisplayEventList(Event[] events) {
+    public static List<DisplayEvent> createDisplayEventList(Event[] events) throws ParseException {
         List<DisplayEvent> displayEvents = new ArrayList<>();
         for (Event event : events) {
             String name = event.getName();
@@ -108,12 +107,13 @@ public class HelperMethods {
             String startDate = event.getDates().getStart().getLocalDate();
             if (startDate == null) {
                 startDate = "date not found";
-            }
+            } else
+            startDate = convertDate(startDate);
 
             String time = event.getDates().getStart().getLocalTime();
             if (time == null) {
                 time = "start time not found";
-            }
+            } else
             time = convertTime(time);
 
             String eventUrl = event.getUrl();
@@ -202,6 +202,16 @@ public class HelperMethods {
     }
     return displayTime;
 }
+    public static String convertDate(String date) throws ParseException {
+        String[] columns = date.split("-");
+        String dateFormat = columns[2] + "/" + columns[1] + "/" + columns[0];
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date1 = newDateFormat.parse(dateFormat);
+        newDateFormat.applyPattern("EEEE, MMM d, yyyy");
+        String newDate = newDateFormat.format(date1);
+        return newDate;
+    }
+
     public static String starReview(int rating){
         String starRating;
         switch (rating) {
