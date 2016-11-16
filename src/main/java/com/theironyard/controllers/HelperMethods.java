@@ -105,16 +105,17 @@ public class HelperMethods {
                 type = "type not found";
             }
             String startDate = event.getDates().getStart().getLocalDate();
-            if (startDate == null) {
+            if (startDate.equals("")) {
                 startDate = "date not found";
-            } else
-            startDate = convertDate(startDate);
-
+            } else {
+                startDate = convertDate(startDate);
+            }
             String time = event.getDates().getStart().getLocalTime();
-            if (time == null) {
+            if (time == null || time.equals("")) {
                 time = "start time not found";
-            } else
-            time = convertTime(time);
+            } else {
+                time = convertTime(time);
+            }
 
             String eventUrl = event.getUrl();
             if (eventUrl == null) {
@@ -144,7 +145,6 @@ public class HelperMethods {
     }
 
     public static Venue[] retrieveVenues(String input) throws Exception {
-        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonResults = "";
         String encoded = URLEncoder.encode(input, "UTF-8");
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword="

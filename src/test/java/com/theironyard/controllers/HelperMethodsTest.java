@@ -24,6 +24,14 @@ public class HelperMethodsTest {
         String[] expectedTimes = {"1:00 PM", "12:00 PM", "12:00 AM", "12:30 PM", "3:00 AM"};
         assertArrayEquals(expectedTimes, newTimes);
 }
+    @Test
+    public void convertDateTest() throws ParseException {
+        String date = "2016-11-18";
+        String newDate = HelperMethods.convertDate(date);
+        assertTrue(newDate.equalsIgnoreCase("Friday, Nov 18, 2016"));
+    }
+
+
 
 
 }
