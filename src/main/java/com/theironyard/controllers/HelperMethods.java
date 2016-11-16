@@ -29,9 +29,9 @@ public class HelperMethods {
     private static final Logger LOGGER = Logger.getLogger(HelperMethods.class.getName());
     static Map<String, String> env = System.getenv();
 
-    static String APIKEY = env.get("TICKETMASTER_APIKEY");
+//    static String APIKEY = env.get("TICKETMASTER_APIKEY");
 
-//   static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
+   static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
 
     public static List<DisplayVenue> createDisplayVenue(Venue[] venues) {
         List<DisplayVenue> showVenueList = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.theironyard.DisplayEvent;
+import com.theironyard.DisplayReview;
 import com.theironyard.DisplayVenue;
 import com.theironyard.JsonObjects.Event.Event;
 import com.theironyard.JsonObjects.Venue.Venue;
@@ -70,12 +71,13 @@ public class VenueReviewController {
         List<DisplayEvent> eventDisplayList = HelperMethods.createDisplayEventList(events);
         User user = users.findFirstByEmail((String) session.getAttribute("email"));
         List<Review> displayReviews = reviews.findAllByVenueId(id);
-        List<Review> displayReviewStars = new ArrayList<>();
+        List<DisplayReview> displayReviewStars = new ArrayList<>();
         for (Review review: displayReviews){
             int rating = review.getRating();
             String starRating = HelperMethods.starReview(rating);
-            Review review1 = new Review(review.getText(), review.getRating(), review.getUser(), review.getVenueId(), starRating);
+            DisplayReview review1 = new DisplayReview(review.getText(), review.getUser().getName(), starRating);
             displayReviewStars.add(review1);
+            System.out.println(review.getUser().getName());
         }
         int averageRating = HelperMethods.getAverageRating(displayReviews);
         String averageStarRating = "";
@@ -95,7 +97,7 @@ public class VenueReviewController {
 
 
     @RequestMapping(path = "/create-review", method = RequestMethod.POST)
-    public String createReview(HttpSession session, String rating, String text, Model model) {
+    public String createReview(HttpSession session, String rating, String text) {
         String email = (String) session.getAttribute("email");
         User user = users.findFirstByEmail(email);
         String id = (String) session.getAttribute("id");
