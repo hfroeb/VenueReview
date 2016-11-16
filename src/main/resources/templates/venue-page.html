@@ -221,8 +221,8 @@
         <li>
             <h5> {{user.name}} </h5>
 
-            <div id="{{rating}}"></div>
-
+            <input type="number" id="rating" value="{{rating}}" hidden/>
+<div id="stars"></div>
             Review: {{text}} <br> <br>
         </li>
         {{/reviews}}
