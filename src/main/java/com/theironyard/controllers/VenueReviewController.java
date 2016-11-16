@@ -61,10 +61,12 @@ public class VenueReviewController {
     public String venueReviews(HttpSession session, Model model) throws Exception {
         List<DisplayVenue> showVenueList = (List) session.getAttribute("venueList");
         DisplayVenue currentVenue = new DisplayVenue();
+        currentVenue = (DisplayVenue) session.getAttribute("venue");
         String id = (String) session.getAttribute("id");
         for (DisplayVenue venue : showVenueList) {
             if (id.equals(venue.id)) {
                 currentVenue = venue;
+                session.setAttribute("venue", currentVenue);
             }
         }
         Event[] events = HelperMethods.retrieveEvents(id);
@@ -73,11 +75,12 @@ public class VenueReviewController {
         List<Review> displayReviews = reviews.findAllByVenueId(id);
         List<DisplayReview> displayReviewStars = new ArrayList<>();
         for (Review review: displayReviews){
-            int rating = review.getRating();
-            String starRating = HelperMethods.starReview(rating);
-            DisplayReview review1 = new DisplayReview(review.getText(), review.getUser().getName(), starRating);
-            displayReviewStars.add(review1);
-            System.out.println(review.getUser().getName());
+            if(review.getApproved()) {
+                int rating = review.getRating();
+                String starRating = HelperMethods.starReview(rating);
+                DisplayReview review1 = new DisplayReview(review.getText(), review.getUser().getName(), starRating);
+                displayReviewStars.add(review1);
+            }
         }
         int averageRating = HelperMethods.getAverageRating(displayReviews);
         String averageStarRating = "";
@@ -123,7 +126,7 @@ public class VenueReviewController {
     }
 
     @RequestMapping(path = "/create-user", method = RequestMethod.POST)
-    public String createUser(String name, String password, String email) throws Exception {
+    public String createUser(String name, String password, String email,HttpSession session) throws Exception {
         User user = users.findFirstByEmail(email);
         User nameCheck = users.findFirstByName(name);
         if (user != null) {
@@ -133,6 +136,7 @@ public class VenueReviewController {
         } else {
             user = new User(name, PasswordStorage.createHash(password), email);
             users.save(user);
+            session.setAttribute("email", email);
         }
         return "redirect:/";
     }

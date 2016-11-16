@@ -4,6 +4,8 @@ import com.theironyard.entities.User;
 import com.theironyard.services.ReviewRepository;
 import com.theironyard.services.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -61,10 +63,12 @@ public class VenueReviewRestfulController {
 
     @CrossOrigin
     @RequestMapping(path = "/approve-review", method = RequestMethod.POST)
-    public void approveReview(@RequestParam("id") Integer id, HttpSession session) {
+    public ResponseEntity<Review> approveReview(@RequestParam("id") Integer id) {
         Review review = reviews.findOne(id);
         review.setApproved(true);
         reviews.save(review);
+
+        return new ResponseEntity<Review>(review, HttpStatus.ACCEPTED);
     }
 
 //    @CrossOrigin
