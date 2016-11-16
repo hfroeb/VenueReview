@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.theironyard.DisplayEvent;
 import com.theironyard.DisplayVenue;
 import com.theironyard.JsonObjects.Event.Event;
@@ -16,7 +17,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Created by jakefroeb on 11/9/16.
@@ -24,7 +27,12 @@ import java.util.Scanner;
 
 public class HelperMethods {
 
-    static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
+    private static final Logger LOGGER = Logger.getLogger(HelperMethods.class.getName());
+    static Map<String, String> env = System.getenv();
+
+    static String APIKEY = env.get("TICKETMASTER_APIKEY");
+
+   // static String APIKEY = "IKno8NgrFkeJFS7hALKb9ol4o7wrZGfJ";
 
     public static List<DisplayVenue> createDisplayVenue(Venue[] venues) {
         List<DisplayVenue> showVenueList = new ArrayList<>();
@@ -62,6 +70,7 @@ public class HelperMethods {
     }
 
     public static Event[] retrieveEvents(String id) throws Exception {
+        LOGGER.info("APIKEY=" + APIKEY);
         String jsonEventResults = "";
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/events.json?venueId=" + id + "&apikey=" + APIKEY);
         URL url = new URL(urlString);
@@ -135,6 +144,7 @@ public class HelperMethods {
     }
 
     public static Venue[] retrieveVenues(String input) throws Exception {
+        //logger.log(Level.INFO, "This is the apiKey " + APIKEY);
         String jsonResults = "";
         String encoded = URLEncoder.encode(input, "UTF-8");
         String urlString = String.format("https://app.ticketmaster.com/discovery/v2/venues.json?keyword="
@@ -163,7 +173,13 @@ public class HelperMethods {
         String[] columns = time.split(":");
         String standardTime1 = columns[0] + columns[1];
         int standardTime = (Integer.parseInt(standardTime1));
-        if (standardTime > 1200) {
+        if (standardTime == 1200){
+            displayTime = "12:00 PM";
+        }
+        else if (standardTime == 2400){
+            displayTime = "12:00 AM";
+        }
+        else if (standardTime > 1200) {
             standardTime = standardTime - 1200;
             displayTime = Integer.toString(standardTime);
             if (displayTime.length() > 3) {
