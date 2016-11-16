@@ -14,6 +14,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+//spring.datasource.url=jdbc:postgresql://localhost:5432/venuereview
+//		spring.jpa.generate-ddl=true
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringBootTest
@@ -22,7 +25,7 @@ public class VenueReviewApplicationTests {
 	@Autowired
 	WebApplicationContext wap;
 
-	MockMvc mockMvc;
+	static MockMvc mockMvc;
 
 	@Before
 	public void before() {
@@ -32,7 +35,7 @@ public class VenueReviewApplicationTests {
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class VenueReviewApplicationTests1 {
+public static class VenueReviewApplicationTests1 {
 
 	@Autowired
 	UserRepository users;
