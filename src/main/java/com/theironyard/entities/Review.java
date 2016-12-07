@@ -39,6 +39,7 @@ public class Review {
         this.venueId = venueId;
         this.approved = false;
     }
+    //change back!
 
     public Review(String text, int rating, User user, String venueId, String starRating) {
         this.text = text;

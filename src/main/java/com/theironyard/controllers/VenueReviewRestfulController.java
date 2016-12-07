@@ -3,6 +3,7 @@ import com.theironyard.entities.Review;
 import com.theironyard.entities.User;
 import com.theironyard.services.ReviewRepository;
 import com.theironyard.services.UserRepository;
+import com.theironyard.utilities.PasswordStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,10 @@ public class VenueReviewRestfulController {
 
     @CrossOrigin
     @RequestMapping(path = "/adminLogin", method = RequestMethod.GET)
-    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
+    public User adminLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
         List<User> admins = users.findAllByAdmin(true);
         for (User user : admins) {
-            if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
+            if (email.equals(user.getEmail()) &&  (PasswordStorage.verifyPassword(password, user.getPassword()))) {
                 session.setAttribute("admin", user.getAdmin());
                 return user;
             }
